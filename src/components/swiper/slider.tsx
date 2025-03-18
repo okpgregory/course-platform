@@ -20,7 +20,7 @@ function Slider({ children, overlay, label, ...rest }: Props) {
           <div className="absolute w-[40px] slider-overlay right-0 h-full z-50" />
         </>
       )}
-      {label && <Label className="pl-7 mb-3 text-themeTextGray">{label}</Label>}
+      {label && <Label className="pl-7 mb-3 text-secondary">{label}</Label>}
       <Swiper modules={[Navigation, Pagination, Autoplay, FreeMode]} {...rest}>
         {children}''
       </Swiper>

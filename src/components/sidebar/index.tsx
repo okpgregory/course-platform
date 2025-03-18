@@ -40,7 +40,7 @@ function Sidebar({ courseId, userId, mobile }: Props) {
         <DropDown
           title="Courses"
           trigger={
-            <div className="w-full flex items-center justify-between text-themeTextGray md:border-[1px] border-themeGray p-3 rounded-xl">
+            <div className="w-full flex items-center justify-between text-secondary md:border-[1px] border-themeGray p-3 rounded-xl">
               <div>
                 <img
                   src={`https://ucarecdn.com/${
@@ -86,7 +86,7 @@ function Sidebar({ courseId, userId, mobile }: Props) {
           {userId === courseData.course?.authorId && (
             <Plus
               size={16}
-              className={cn("text-themeTextGray cursor-pointer", {
+              className={cn("text-secondary cursor-pointer", {
                 "opacity-70": isPending,
               })}
               {...(isNewChapterPending && {

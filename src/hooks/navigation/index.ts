@@ -1,4 +1,4 @@
-import { onCreateNewChapter } from "@/actions/chapter";
+import { onCreateNewChapter } from "@/actions/chapters";
 import { IChapter, ICourseData, ICoursesData } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";

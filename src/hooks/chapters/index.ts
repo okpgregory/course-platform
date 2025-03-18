@@ -1,7 +1,7 @@
 import { onDeleteChapter, onUpdateNewChapter } from "@/actions/chapters";
 import { IChapter } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 export const useChapterInfo = () => {
@@ -58,4 +58,47 @@ export const useChapterInfo = () => {
       });
     },
   });
+
+  const onEndChapterEdit = (event: Event) => {
+    if (inputRef.current && chapterRef.current && triggerRef.current) {
+      if (
+        !inputRef.current.contains(event.target as Node | null) &&
+        !chapterRef.current.contains(event.target as Node | null) &&
+        !triggerRef.current.contains(event.target as Node | null)
+      ) {
+        if (inputRef.current.value) {
+          updateChapter({ name: inputRef.current.value });
+        }
+        if (icon) {
+          updateChapter({ icon });
+        } else {
+          setEdit(false);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", onEndChapterEdit, false);
+    return () => {
+      document.removeEventListener("click", onEndChapterEdit, false);
+    };
+  }, [icon]);
+
+  const onChapterDelete = (id: string) => deleteChapter({ id });
+
+  return {
+    chapter,
+    onEditChapter,
+    chapterRef,
+    edit,
+    inputRef,
+    updateChapterVariables,
+    isUpdateChapterPending,
+    triggerRef,
+    onSetIcon,
+    icon,
+    onChapterDelete,
+    deleteVariables,
+  };
 };
